@@ -8,5 +8,5 @@ class Compra(models.Model):
     valor = models.FloatField()
     descricao = models.CharField(max_length=255)
     data_compra = models.DateField()
-    cliente_cpf_compra = models.ForeignKey(Cliente, on_delete=models.CASCADE, blank=True, null=True)
+    cliente_cpf_compra = models.ForeignKey(Cliente, on_delete=models.CASCADE)
 

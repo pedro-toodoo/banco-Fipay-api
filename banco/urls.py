@@ -13,7 +13,7 @@ from cliente.views import ClienteAPIView
 from deposito.views import DepositoAPIView
 from compra.views import CompraAPIView
 from transferencia.views import TransferenciaAPIView
-from financeiro.views import FinanceiroAPIView
+from financeiro.views import FinanceiroAPIView, RendimentoAPIView
 
 route = routers.DefaultRouter()
 route.register(r'cadastrar_cliente', vsc.ClienteViewset, basename='cliente')
@@ -32,4 +32,5 @@ urlpatterns = [
     path('transferencia/', TransferenciaAPIView.as_view(), name='transferencia'),
     path('compra/', CompraAPIView.as_view(), name='compra'),
     path('financeiro/', FinanceiroAPIView.as_view(), name='financeiro'),
+    path('rendimento/<int:valor>/<int:dias>', RendimentoAPIView.as_view(), name='rendimento')
 ]

@@ -135,9 +135,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #DATE_INPUT_FORMATS = ['%d-%m-%Y']
 
+DATE_INPUT_FORMATS = ['%d-%m-%Y']
+
 REST_FRAMEWORK = {
-    'DATE_FORMAT': "%d/%m/%Y",
-    'DATE_INPUT_FORMATS': ["%d-%m-%Y"],
+    'DATE_FORMAT': "%d/%m/%Y"
 }
 
 django_heroku.settings(locals())

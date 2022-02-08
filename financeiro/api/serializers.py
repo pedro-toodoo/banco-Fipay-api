@@ -5,5 +5,6 @@ class FinanceiroSerializer(serializers.Serializer):
     moeda = serializers.JSONField()
     mercado = serializers.JSONField()
     bitcoin = serializers.JSONField()
+    taxas = serializers.JSONField()
         
 
