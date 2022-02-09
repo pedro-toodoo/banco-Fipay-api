@@ -24,8 +24,16 @@ class CompraAPIView(APIView):
         else:
             return Response("Saldo insuficiente para realizar compra")
             
-
         infos = serializers.CompraSerializer(data=request.data)
         infos.is_valid(raise_exception=True)
         infos.save()
         return Response(infos.data, status=status.HTTP_201_CREATED)
+
+class PesquisaComprasClienteAPIView(APIView):
+    """
+    API que lista as compras realizadas por um cliente
+    """
+    def get(self, request, cpf):
+        compra_cpf = Compra.objects.filter(cliente_cpf_compra=cpf)
+        infos = serializers.CompraSerializer(compra_cpf, many=True)
+        return Response(infos.data)

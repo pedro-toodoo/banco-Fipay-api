@@ -29,9 +29,6 @@ class TransferenciaAPIView(APIView):
             cliente2.save()
 
             Notificacao.objects.create(cpf_remetente=cliente1, cpf_destinatario=cliente2, valor=valor )
-            #for item in notificacao1:
-            #    item.save()
-
             
         else:
             return Response("Saldo insuficiente para realizar a transferência")
@@ -41,3 +38,12 @@ class TransferenciaAPIView(APIView):
         infos.is_valid(raise_exception=True)
         infos.save()
         return Response(infos.data, status=status.HTTP_201_CREATED)
+
+class PesquisaTransferenciaCliente(APIView):
+    """
+    API que lista transferências feitas por um cliente
+    """
+    def get(self, request, cpf):
+        transf_cpf = Transferencia.objects.filter(cliente1_cpf_transf=cpf)
+        infos = serializers.TransferenciaSerializer(transf_cpf, many=True)
+        return Response(infos.data)

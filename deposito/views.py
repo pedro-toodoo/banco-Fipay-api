@@ -25,4 +25,12 @@ class DepositoAPIView(APIView):
         infos.is_valid(raise_exception=True)
         infos.save()
         return Response(infos.data, status=status.HTTP_201_CREATED)
-    
+
+class PesquisaDepositoCliente(APIView):
+    """
+    API que lista depósito feitos para o cliente
+    """
+    def get(self, request, cpf):
+        depositos_cpf = Deposito.objects.filter(cliente_cpf_dep=cpf)
+        infos = serializers.DepositoSerializer(depositos_cpf, many=True)
+        return Response(infos.data)

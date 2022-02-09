@@ -1,3 +1,4 @@
+from unicodedata import name
 from django.contrib import admin
 from django.urls import path, include
 
@@ -9,11 +10,12 @@ from compra.api import viewsets as vscom
 from financeiro.api import viewsets as vsfinan
 from notificacao.api import viewsets as vsn
 
-from cliente.views import ClienteAPIView
-from deposito.views import DepositoAPIView
-from compra.views import CompraAPIView
-from transferencia.views import TransferenciaAPIView
+from cliente.views import ClienteAPIView, PesquisaSaldoCliente
+from deposito.views import DepositoAPIView, PesquisaDepositoCliente
+from compra.views import CompraAPIView, PesquisaComprasClienteAPIView
+from transferencia.views import TransferenciaAPIView, PesquisaTransferenciaCliente
 from financeiro.views import FinanceiroAPIView, RendimentoAPIView
+
 
 route = routers.DefaultRouter()
 route.register(r'cadastrar_cliente', vsc.ClienteViewset, basename='cliente')
@@ -32,5 +34,10 @@ urlpatterns = [
     path('transferencia/', TransferenciaAPIView.as_view(), name='transferencia'),
     path('compra/', CompraAPIView.as_view(), name='compra'),
     path('financeiro/', FinanceiroAPIView.as_view(), name='financeiro'),
-    path('rendimento/<int:valor>/<int:dias>', RendimentoAPIView.as_view(), name='rendimento')
+    path('rendimento/<int:valor>/<int:dias>', RendimentoAPIView.as_view(), name='rendimento'),
+
+    path('cliente-compra/<str:cpf>/', PesquisaComprasClienteAPIView.as_view(), name='cliente-compra'),
+    path('cliente-deposito/<str:cpf>/', PesquisaDepositoCliente.as_view(), name='cliente-deposito'),
+    path('cliente-transf/<str:cpf>/', PesquisaTransferenciaCliente.as_view(), name='cliente-transf'),
+    path('cliente-saldo/<str:cpf>/', PesquisaSaldoCliente.as_view(), name='cliente-saldo')
 ]

@@ -19,3 +19,13 @@ class ClienteAPIView(APIView):
         infos.is_valid(raise_exception=True)
         infos.save()
         return Response(infos.data, status=status.HTTP_201_CREATED)
+
+class PesquisaSaldoCliente(APIView):
+    """
+    API que retorna o saldo de um cliente especificado
+    """
+    def get(self, request, cpf): 
+        saldo_cliente = Cliente.objects.filter(cpf=cpf)
+        infos = serializers.ClienteSerializer(saldo_cliente, many=True)
+        print(infos.data)
+        return Response(infos.data[0]['saldo'])
