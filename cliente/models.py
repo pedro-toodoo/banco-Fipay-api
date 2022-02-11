@@ -10,5 +10,5 @@ class Cliente(models.Model):
     cidade = models.CharField(max_length=50, blank=False, null=False)
     estado = models.CharField(max_length=20, blank=False, null=False)
     pais = models.CharField(max_length=20, blank=False, null=False)
-    nascimento = models.DateField(blank=False, null=False)
+    #nascimento = models.DateField(blank=False, null=False)
     saldo = models.FloatField(default=0, editable=False)

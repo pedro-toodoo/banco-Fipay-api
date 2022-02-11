@@ -22,7 +22,7 @@ route.register(r'cadastrar_cliente', vsc.ClienteViewset, basename='cliente')
 route.register(r'fazer_deposito', vsd.DepositoViewset, basename='deposito')
 route.register(r'fazer_transferencia', vst.TransferenciaViewSet, basename='transferencia')
 route.register(r'fazer_compra', vscom.CompraViewSet, basename='compra')
-route.register(r'analise_moedas', vsfinan.FinanceiroViewset, basename='financeiro')
+#route.register(r'analise_moedas', vsfinan.FinanceiroViewset, basename='financeiro')
 route.register(r'notificacoes', vsn.NotificacaoViewSet, basename='notificacoes')
 
 
